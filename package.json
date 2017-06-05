@@ -1,9 +1,18 @@
 {
-  "dependencies": {
-    "express": "^4.15.3"
-  },
   "name": "hope-tweets",
   "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "pug": "^2.0.0-rc.2",
+    "serve-favicon": "^2.4.3"
+  },
   "description": "hope umc worship service tweeter",
   "repository": "git@github.com:ibiwan/hope-tweets.git",
   "license": "MIT"
