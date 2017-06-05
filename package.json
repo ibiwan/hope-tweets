@@ -5,6 +5,6 @@
   "name": "hope-tweets",
   "version": "0.0.1",
   "description": "hope umc worship service tweeter",
-  "repository": "none yet",
+  "repository": "git@github.com:ibiwan/hope-tweets.git",
   "license": "MIT"
 }
