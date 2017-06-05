@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "name": "hope-tweets",
+  "version": "0.0.1",
+  "description": "hope umc worship service tweeter",
+  "repository": "none yet",
+  "license": "MIT"
+}

@@ -1,0 +1,22 @@
+Use the id_str field instead of id whenever present to stay safe
+The Streaming API provides low-latency high-volume access to Tweets.
+There are two initial buckets available for GET requests: 15 calls every 15 minutes, and 180 calls every 15 minutes.
+
+X-Rate-Limit-Limit: the rate limit ceiling for that given endpoint
+X-Rate-Limit-Remaining: the number of requests left for the 15 minute window
+X-Rate-Limit-Reset: the remaining window before the rate limit resets, in UTC epoch seconds
+
+use oauth
+validate inp
+filter input, escape output
+sqli
+
+Use the “url” value of a URL entity for the href attribute of an anchor tag.
+Use the “expanded_url” value of a URL entity for the title attribute of an anchor tag, so that when users hover over the link they see the fully expanded URL.
+Use the “display_url” value of a URL entity for the displayed text between opening & closing anchor tags. If you prefer not to display our truncated format, use the full “expanded_url” instead.
+
+Twitter Objects: Tweets, Users, Entities, Places
+
+Tweets: "status updates"
+
+pagination: https://dev.twitter.com/overview/api/cursoring
