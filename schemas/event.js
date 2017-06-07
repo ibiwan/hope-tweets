@@ -1,31 +1,33 @@
 var mongoose     = require('mongoose')
 mongoose.Promise = require('bluebird')
 
-var eventSchema = require('./event').event_schema
-
-var tweetSchema = mongoose.Schema({
+var eventSchema = mongoose.Schema({
+    date      : Date,
     created_at: {
         type   : Date,
         default: Date.now
     },
-    type      : String, // scripture, hymn, call-response, prayer, other-text (last three external)
+    name      : String, // 9:00 AM Sunday Worship Service, 10:45 AM Sunday Worship Service, Saturday Night Alive, ...
     weight    : {
         type   : Number,
         default: 0
     },
-    event     : eventSchema
+
 })
 
-tweetSchema.methods.identify = function () {
+eventSchema.methods.identify = function () {
     console.log([
-        'I am scheduled for ' + this.event.name,
+        'I am scheduled for ' + this.date,
         'I was created at ' + this.created_at,
     ])
 }
 
-var Tweet = mongoose.model('Tweet', tweetSchema)
+var Event = mongoose.model('Event', eventSchema)
 
-module.exports = Tweet
+module.exports = {
+    event_model : Event,
+    event_schema: eventSchema,
+}
 
 
 /**
