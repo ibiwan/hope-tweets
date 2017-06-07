@@ -10,7 +10,7 @@ router
         var mongoose     = require('mongoose')
         mongoose.Promise = require('bluebird')
 
-        var Tweet = require('../schemas/tweet')
+        var Tweet = require('../schemas/tweet').model
 
         mongoose.connect(dbconfig.url)
         console.log(mongoose)
@@ -31,7 +31,7 @@ router
             }
 
             var fluffy = new Tweet({
-                event_date: Date.now(),
+                event_date : Date.now(),
             })
             console.log('first identity')
             fluffy.identify() // "Meow name is fluffy"
@@ -52,12 +52,12 @@ router
         })
 
         res.render('index', {
-            title: 'Express',
+            title : 'Express',
         })
     })
     .post(path, function (req, res, next) {
         res.render('debug', {
-            data: JSON.stringify(req.body, null, 2),
+            data : JSON.stringify(req.body, null, 2),
         })
     })
 
