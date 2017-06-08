@@ -58,11 +58,4 @@ tweetSchema.methods.identify = function () {
     ])
 }
 
-const Tweet = mongoose.model('Tweet', tweetSchema)
-
-module.exports = Tweet
-
-module.exports = {
-    model  : Tweet,
-    schema : tweetSchema,
-}
+mongoose.model('Tweet', tweetSchema)

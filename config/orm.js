@@ -1,24 +1,34 @@
 const mongoose   = require('mongoose')
 mongoose.Promise = require('bluebird')
-const url        = require('../config/db').url
+const dbURI      = require('../config/db').url
 
-const blah = mongoose.connect(url, a => null)
+mongoose.connect(dbURI)
 
-//.then(
-//    function fulfill() {
-//            console.log('fulfill')
-//    },
-//    function reject() {
-//            console.log('reject')
-//    })
-//.catch(
-//    function () {
-//            console.log('reject')
-//    })
+// CONNECTION EVENTS
+// When successfully connected
+mongoose.connection.on('connected', function () {
+    console.log('Mongoose default connection open to ' + dbURI)
+})
 
-console.log('mongoose connect result: ', blah)
+// If the connection throws an error
+mongoose.connection.on('error', function (err) {
+    console.log('Mongoose default connection error: ' + err)
+})
 
-const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+    console.log('Mongoose default connection disconnected')
+})
 
-module.exports = db
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function () {
+    mongoose.connection.close(function () {
+        console.log('Mongoose default connection disconnected through app termination')
+        process.exit(0)
+    })
+})
+
+require('../schemas/tweet')
+require('../schemas/event')
+
+module.exports = mongoose

@@ -1,5 +1,4 @@
 var mongoose     = require('mongoose')
-mongoose.Promise = require('bluebird')
 
 var eventSchema = mongoose.Schema({
     date       : Date,
