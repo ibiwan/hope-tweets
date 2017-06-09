@@ -29,6 +29,7 @@ process.on('SIGINT', function () {
 })
 
 require('../schemas/tweet')
-require('../schemas/event')
+require('../schemas/tweet')
+require('../schemas/user')
 
 module.exports = mongoose
