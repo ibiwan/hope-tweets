@@ -1,29 +1,41 @@
-var mongoose = require('mongoose')
+'use strict'
 
-var eventSchema = mongoose.Schema({
-    date       : Date,
+const mongoose         = require('mongoose')
+const {saver, indexer} = require('./schema-util')
+
+const fields = {
+    date       : {
+        type       : Date,
+        required   : true,
+        index_part : true,
+    },
     created_at : {
-        type    : Date,
-        default : Date.now
+        type     : Date,
+        default  : Date.now,
+        required : true,
     },
-    name       : String, // 9:00 AM Sunday Worship Service, 10:45 AM Sunday Worship Service, Saturday Night Alive, ...
+    name       : { // 9:00 AM Sunday Worship Service, 10:45 AM Sunday Worship Service, Saturday Night Alive, ...
+        type       : String,
+        required   : true,
+        index_part : true,
+    },
     weight     : {
-        type    : Number,
-        default : 0
+        type     : Number,
+        default  : 0,
+        required : true,
     },
-    venue      : String, // Hope UMC Sanctuary, ...
-})
-
-eventSchema.methods.identify = function () {
-    console.log([
-        'I am scheduled for ' + this.date,
-        'I was created at ' + this.created_at,
-    ])
+    venue      : { // Hope UMC Sanctuary, ...
+        type       : String,
+        required   : true,
+        index_part : true,
+    },
 }
 
-var Event = mongoose.model('Event', eventSchema)
+const eventSchema = mongoose.Schema(fields)
+const indexFields = indexer(eventSchema, fields)
+eventSchema.methods.save_or_make = saver(this, indexFields)
 
 module.exports = {
-    model  : Event,
+    model  : mongoose.model('Event', eventSchema),
     schema : eventSchema,
 }

@@ -20,11 +20,15 @@ app.use(bodyParser.urlencoded({extended : false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-let index_routes = require('./routes/index')
-app.use('/', index_routes)
+const routeFiles = {
+    '/'      : './routes/index',
+    '/user'  : './routes/user',
+    '/event' : './routes/event',
+}
 
-let users_routes = require('./routes/users')
-app.use('/users', users_routes)
+for (let route in routeFiles) {
+    app.use(route, require(routeFiles[route]))
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -47,6 +51,5 @@ app.use(function (err, req, res, next) {
 module.exports = app
 
 
-
-const all_routes = require('express-list-endpoints');
-console.log(all_routes(app));
+const all_routes = require('express-list-endpoints')
+console.log(all_routes(app))

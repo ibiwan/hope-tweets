@@ -8,7 +8,6 @@ const Event   = orm.model('Event')
 
 const path = '/'
 
-/* GET home page. */
 router
     .get(path, function (req, res, next) {
         Promise
@@ -16,6 +15,7 @@ router
             .then(() =>
                 orm.model('Event').create(
                     {
+                        some:'data',
                         /* some data here */
                     }
                 )
