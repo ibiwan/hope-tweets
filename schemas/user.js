@@ -1,7 +1,7 @@
-var mongoose     = require('mongoose')
+const mongoose     = require('mongoose')
 mongoose.Promise = require('bluebird')
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     first_name    : String,
     last_name     : String,
     email         : String,
@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
     venues        : [String], // [Hope UMC Sanctuary]
 })
 
-var User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema)
 
 module.exports = {
     model  : User,

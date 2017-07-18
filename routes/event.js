@@ -15,13 +15,15 @@ router
                 return Event.find()
             })
             .then(function (events) {
-                res.render('debug', {
-                    data : events,
+                res.send({
+                    success: true,
+                    count: events.length,
+                    events: events
                 })
             })
             .catch(function (err) {
-                return res.render('error', {
-                    message : 'error creating event: ' + err,
+                res.send({
+                    message : 'error fetching events: ' + err,
                     error   : err,
                 })
             })
@@ -34,18 +36,18 @@ router
                 return evt.save_or_make()
             })
             .then(function (event) {
-                return res.render('debug', {
+                res.render('debug', {
                     data : JSON.stringify(event, null, 2),
                 })
             })
             .catch(function (err) {
                 if (err.message && err.message.startsWith('E11000')) {
-                    return res.render('error', {
+                    res.render('error', {
                         message : 'Error: Event Already Exists',
                         error   : err,
                     })
                 }
-                return res.render('error', {
+                res.render('error', {
                     message : 'error creating event: ' + err,
                     error   : err,
                 })
